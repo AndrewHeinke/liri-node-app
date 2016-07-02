@@ -18,15 +18,15 @@ var client = new Twitter({
 function twitter() {
   console.log("Loading...");
   client.get('statuses/user_timeline', {count: 20}, function(error, tweets, response) {
-    if (!error) {
-      console.log("Latest 20 tweets: " + "\n" );
-      for (var i = 0; i < tweets.length; i++) {
-        console.log("Date: " + tweets[i].created_at);
-        console.log("Tweet #" + i + ": " + tweets[i].text);
-        console.log("");
-      }
+    if (error) {
+      console.log("Oh no! An error has occured: " + error);
     } else {
-        console.log("Oh no! An error has occured: " + error);
+        console.log("Latest 20 tweets: " + "\n" );
+        for (var i = 0; i < tweets.length; i++) {
+          console.log("Date: " + tweets[i].created_at);
+          console.log("Tweet #" + i + ": " + tweets[i].text);
+          console.log("");
+        }
       }
   });
 }
@@ -39,15 +39,15 @@ function songs(songTitle) {
   }
   console.log("Loading...");
   spotify.search({ type: 'track', query: songTitle, count: 1 }, function(error, data) {
-    if (!error) {
-      console.log("----------------------------------------------------------------");
-      console.log("Artist: " + data.tracks.items[0].artists[0].name);
-      console.log("Song Name: " + data.tracks.items[0].name);
-      console.log("Spotify Link: " + data.tracks.items[0].external_urls.spotify);
-      console.log("Album Name: " + data.tracks.items[0].album.name);
-      console.log("----------------------------------------------------------------");
+    if (error) {
+      console.log("Oh no! An error has occured: " + error);
     } else {
-        console.log("Oh no! An error has occured: " + error);
+        console.log("----------------------------------------------------------------");
+        console.log("Artist: " + data.tracks.items[0].artists[0].name);
+        console.log("Song Name: " + data.tracks.items[0].name);
+        console.log("Spotify Link: " + data.tracks.items[0].external_urls.spotify);
+        console.log("Album Name: " + data.tracks.items[0].album.name);
+        console.log("----------------------------------------------------------------");
       }
   });
 }
