@@ -26,7 +26,7 @@ function twitter() {
         console.log("");
       }
     } else {
-      console.log("Oh no! An error has occured: " + error);
+        console.log("Oh no! An error has occured: " + error);
       }
   });
 }
@@ -39,16 +39,16 @@ function songs(songTitle) {
   }
   console.log("Loading...");
   spotify.search({ type: 'track', query: songTitle, count: 1 }, function(error, data) {
-    if (error) {
-      console.log("Oh no! An error has occured: " + error);
-      return;
-    }
-    console.log("----------------------------------------------------------------");
-    console.log("Artist: " + data.tracks.items[0].artists[0].name);
-    console.log("Song Name: " + data.tracks.items[0].name);
-    console.log("Spotify Link: " + data.tracks.items[0].external_urls.spotify);
-    console.log("Album Name: " + data.tracks.items[0].album.name);
-    console.log("----------------------------------------------------------------");
+    if (!error) {
+      console.log("----------------------------------------------------------------");
+      console.log("Artist: " + data.tracks.items[0].artists[0].name);
+      console.log("Song Name: " + data.tracks.items[0].name);
+      console.log("Spotify Link: " + data.tracks.items[0].external_urls.spotify);
+      console.log("Album Name: " + data.tracks.items[0].album.name);
+      console.log("----------------------------------------------------------------");
+    } else {
+        console.log("Oh no! An error has occured: " + error);
+      }
   });
 }
 
@@ -73,9 +73,8 @@ function movies(movieTitle) {
       console.log("Rotten Tomatoes Rating: " + movieInfo.tomatoUserRating);
       console.log("Rotten Tomatoes URL: " + movieInfo.tomatoURL);
       console.log("----------------------------------------------------------------");
-    }
-    else {
-      console.log("Oh no! An error has occured: " + error);
+    } else {
+        console.log("Oh no! An error has occured: " + error);
     }
   });
 }
