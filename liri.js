@@ -59,7 +59,7 @@ function movies(movieTitle) {
     movieTitle = userInput2;
   }
   console.log("Loading...");
-  request('http://www.omdbapi.com/?t=' + movieTitle + "&tomatoes=true", function (error, response, body) {
+  request('http://www.omdbapi.com/?t=' + movieTitle + "&tomatoes=true", function(error, response, body) {
     if (!error && response.statusCode == 200) {
       var movieInfo = JSON.parse(body);
       console.log("----------------------------------------------------------------");
@@ -82,24 +82,25 @@ function movies(movieTitle) {
 
 // Takes the text inside of random.txt and uses it to call the first command with the second part as it's parameter
 function random() {
-  fs.readFile("./random.txt", "utf8", function(error, data) {
+  fs.readFile("random.txt", "utf8", function(error, data) {
     if (error) {
       console.log("Oh no! An error has occured: " + error);
-    }
-    var textData = data.trim().split(',');
-    for (var i = 0; i < textData.length; i++){
-        switch(textData[i]) {
+    } else {
+        var textData = data.trim().split(',');
+        userInput = textData[0];
+        userInput2 = textData[1];
+        switch(userInput) {
           case "my-tweets":
             twitter();
             break;
           case 'spotify-this-song':
-            songs(textData[i + 1]);
+            songs(userInput2);
             break;
           case 'movie-this':
-            movies(textData[i + 1]);
+            movies(userInput2);
             break;
           }
-    }
+        }
   });
 }
 
